@@ -25,16 +25,7 @@ echo "$tmpfile";
          header("location:index.php");
         die();
     }
-try {
-    $pdo = new PDO(
-            'mysql:host=localhost;dbname=tp1_bii', 'root', '');
-
-    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->exec("SET NAMES UTF8");
-} catch (PDOException $e) {
-    echo 'Error de conexion a la BD: ' . $e->getMessage();
-}
+require_once 'conexion.php';
 
 
 try {

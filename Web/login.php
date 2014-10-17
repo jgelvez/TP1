@@ -4,21 +4,9 @@
  $usuario = $_POST["user"];
  $contrasena = sha1($_POST["passwd"]);
  
-
+	require_once 'conexion.php';
  
 
- try {
-   $pdo = new PDO(
-     'mysql:host=localhost;dbname=tp1_bii',
-     'root', '');
-   
-   $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
-   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   $pdo->exec("SET NAMES UTF8");
- }
- catch (PDOException $e) {
-   echo 'Error de conexión a la BD: ' . $e->getMessage();
- }
  try {
      $consulta = "SELECT usuario_nombre,foto_perfil FROM usuario WHERE usuario_nombre = '$usuario' AND contrasena= '$contrasena' ";
      $statement1 = $pdo->query($consulta);
