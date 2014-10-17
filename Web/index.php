@@ -31,6 +31,7 @@ and open the template in the editor.
 
 
                 <div class="col-md-4">
+					<form action="buscar_controlador.php" method="POST"><!--agrege yo patty-->
                     <p style="color: white;margin:auto ">Busqueda</p>
                     <input id="search" type="text" name="search" placeholder="buscar" style="margin-left: 30px;width:280px" >
                     <button  class="btn-primary">Buscar</button>

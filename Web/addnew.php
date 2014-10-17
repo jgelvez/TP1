@@ -1,6 +1,7 @@
 <?php
-session_start();
-
+	require_once 'conexion.php';//agregado
+	session_start();
+	
 
  $usuario = $_SESSION['usuario'];
  $foteico=  $_SESSION['perfil'];
