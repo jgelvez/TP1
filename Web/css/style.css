@@ -1,0 +1,126 @@
+#sticky{
+   overflow-x: scroll;    
+}
+
+#contenedor {
+
+ width:800px; height:800px;
+ margin: 0 auto 0 auto;
+ background-color: #0b79a7;
+}
+body{
+    background-color: white;
+   
+}
+div.header{
+    
+    margin:auto;
+    background-color: black;
+    margin-top:-10px;
+    z-index:1;
+  
+}
+#busca{
+    
+    width:60px; 
+    height:60px;
+    margin:auto;
+  
+    float: right;
+   
+   
+    z-index:0;
+    
+  
+}
+input#search{
+    margin:auto;
+    width: 140px;
+   margin-left:-100px;
+   margin-top:-900px;
+}
+
+#logobar{
+    
+  
+    height:200px;
+    background-image: url("images/city4.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    
+    
+ 
+}
+#logo {
+    
+    display:block;
+    margin: 0;
+    
+    
+}
+img.logotype{
+    display:block;
+    padding: 0px;
+    margin:0 auto;
+    margin-left: 200px;
+}
+
+div.iconos{  
+    margin:0px auto 0px auto;
+    margin-top: -50px;
+    width:120px; 
+    height:120px; 
+    float:left;
+    margin-left:400px;
+    -webkit-transition: height .4s;
+     
+    
+}
+div#icon1{
+  
+    background:red;
+    
+   }
+   
+ div#icon2{
+    background:#ff9600;
+    margin-left: 0px;
+   }
+   
+div#icon3{
+    background:#040ed1;
+    margin-left: 0px;
+   }
+ div#icon4{
+    background:#071f9a;
+    margin-left: 0px;
+    opacity:50%;
+   }
+img.icon{
+       display:block;
+       margin:10px auto;
+       width:50px;
+                
+       
+     }
+
+     p.texto{
+         
+         font-size: 1.2em;
+         color: white;
+         text-align: center;
+         padding-top: 10px;
+         
+     }
+     div.iconos:hover {
+         height:160px; 
+         
+         
+     }
+     
+#inputs{
+    margin:auto;
+    background-color: black;
+    margin-left: 900px;
+    margin-top: -0px;
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+--><head>
+        <title>GOTRELEW</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <script src="js/jquery.js"></script> 
+    <script src="js/bootstrap-modal.js"></script> 
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <body>
+      <div class="container-fluid" id="principal">  
+        <div class="row" style="background-color: black">
+            <div class="col-md-12">
+                        <div class="col-md-6">
+                            <img  src="images/logo.png">
+                       </div> 
+                       <div class="col-md-3" style='margin-top: 5px; float: left'> 
+                           
+                       </div>
+            
+            
+                <div class="col-md-3"  style =" float:left" >
+                                <p style="color: white">Busqueda</p>
+                                <input id="search" type="text" name="search" placeholder="buscar" >
+                                <button  class="btn-primary">Buscar</button>
+                                
+                                <a style="margin-top: 20px; background-color: #0082fb ; border-color: #0082fb" data-toggle="modal" href="#myModal" class="btn btn-warning">inciar Session</a>
+                                <button style="margin-top: 20px"  class="btn btn-warning">Registrarse</button>
+                        </div>
+                            
+                
+            </div>
+        </div>
+          <div class="row" >
+              
+              
+               <div id="iconos" style="margin: auto; z-index: 2">
+                              <div class="iconos" id="icon1">
+                                    <img class="icon" src="images/icon1.png">
+                                    <p class="texto">Comida</p>
+                              </div>
+                              <div class="iconos"id="icon2">
+                                <img class="icon" src="images/icon2.png">
+                                <p class="texto">Bares</p>
+                              </div>
+                              <div class="iconos"id="icon3">
+                                <img class="icon" src="images/icon3.png">
+                                <p class="texto">Hoteles</p>
+                              </div>
+                        <div class="iconos"id="icon4">
+                                <img class="icon" src="images/icon4.png">
+                                <p class="texto">Arte</p>
+                              </div>
+                       </div>
+              <div>
+                   <?php include('archivo.html');?> 
+              </div>
+              
+              
+              
+              
+              
+
+              
+              
+              
+              
+              
+              
+              
+              
+              
+                       
+              
+              
+          </div>  
+          
+          
+      </div> 
+   
+        
+                        <div class="modal" id="myModal" style="background-color: white; height: 380px; width: 450px; margin: auto;border-radius: 5px">
+                                <div class="modal-header" style="margin: auto">
+                                    <a class="close" data-dismiss="modal">×</a>
+                                    <h1>Iniciar Session</h1>
+                                  </div>
+                                  <div class="modal-body"style="margin: auto">
+                                      <form action="login.php" method="post">
+                                        <h3>Usuario</h3>
+                                        <input class="form-control" type="text" placeholder="Usuario">
+                                          <h3>Contraseña</h3>
+                                        <input class="form-control" type="text" placeholder="Contraseña">
+                                      </form>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <a href="" class="btn btn-primary">Cerrar</a>
+                                    <button type="submit" class="btn btn-success">Iniciar Session</button>
+                                 </div>
+                        </div> 
+    
+
+    </body>
+
