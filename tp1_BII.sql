@@ -161,9 +161,8 @@ CREATE TABLE `lugar` (
   `latitud` varchar(45) NOT NULL,
   `longitud` varchar(45) NOT NULL,
   `direccion` varchar(45) NOT NULL,
+  `foto_perfil` char(60) NOT NULL,
   PRIMARY KEY (`idlugar`),
-  UNIQUE KEY `latitud_UNIQUE` (`latitud`),
-  UNIQUE KEY `longitud_UNIQUE` (`longitud`),
   KEY `fk_lugar_categoria1_idx` (`categoria_idcategoria`),
   KEY `fk_lugar_usuario1_idx` (`idusuario`),
   CONSTRAINT `fk_lugar_categoria1` FOREIGN KEY (`categoria_idcategoria`) REFERENCES `categoria` (`idcategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -189,12 +188,9 @@ DROP TABLE IF EXISTS `rol`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `rol` (
   `idrol` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `usuario_idusuario` int(10) unsigned NOT NULL,
   `tipo_rol` char(10) NOT NULL,
   `descripcion` text NOT NULL,
-  PRIMARY KEY (`idrol`),
-  KEY `fk_rol_usuario1_idx` (`usuario_idusuario`),
-  CONSTRAINT `fk_rol_usuario1` FOREIGN KEY (`usuario_idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`idrol`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -223,9 +219,12 @@ CREATE TABLE `usuario` (
   `fecha_nac` date NOT NULL,
   `foto_perfil` char(60) NOT NULL,
   `contrasena` char(40) NOT NULL,
+  `rol` int(10) unsigned NOT NULL,
   PRIMARY KEY (`idusuario`),
   UNIQUE KEY `usuario_nombre_UNIQUE` (`usuario_nombre`),
-  UNIQUE KEY `email_UNIQUE` (`email`)
+  UNIQUE KEY `email_UNIQUE` (`email`),
+  KEY `fk_usuario_rol1_idx` (`rol`),
+  CONSTRAINT `fk_usuario_rol1` FOREIGN KEY (`rol`) REFERENCES `rol` (`idrol`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -235,7 +234,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Julian','Gelvez','jogelvez','gelvez30@gmail.com','1985-08-22','46546','1234'),(3,'Juan','Enriquez','jeenriquez','elchuchu@gmail.com','1987-02-16','0','12345'),(4,'Patito','Strada','patty','patty@gati','0000-00-00','0','123456');
+INSERT INTO `usuario` VALUES (1,'Julian','Gelvez','jogelvez','gelvez30@gmail.com','1985-08-22','46546','1234',0),(3,'Juan','Enriquez','jeenriquez','elchuchu@gmail.com','1987-02-16','0','12345',0),(4,'Patito','Strada','patty','patty@gati','0000-00-00','0','123456',0);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -343,7 +342,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `UsuariosComunes` AS select `usuario`.`nombre` AS `nombre`,`usuario`.`apellido` AS `apellido` from (`usuario` join `rol` on((`usuario`.`idusuario` = `rol`.`usuario_idusuario`))) where (`rol`.`tipo_rol` = 'usuario') */;
+/*!50001 VIEW `UsuariosComunes` AS select `usuario`.`nombre` AS `nombre`,`usuario`.`apellido` AS `apellido` from (`usuario` join `rol` on((`usuario`.`rol` = `rol`.`idrol`))) where (`rol`.`tipo_rol` = 'usuario') */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -357,4 +356,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-17 15:15:19
+-- Dump completed on 2014-10-18 18:56:46
