@@ -15,6 +15,15 @@ $uploadfile = $uploaddir . basename($_FILES['uploadFile']['name']);
 $tmpfile= sha1($uploadfile).".jpg";
 
 echo "$tmpfile";
+//validar con expreciones regulares
+	function validateEmail($email) {
+		var emailReg = /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+		if( !emailReg.test( $email ) ) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 
 
     if (move_uploaded_file($_FILES['uploadFile']['tmp_name'], $uploaddir.$tmpfile)) {

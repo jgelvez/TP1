@@ -13,7 +13,7 @@ and open the template in the editor.
     </script>
     <script src="js/maps.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-    <script src = "js/jquery.js"></script> 
+   <!-- <script src = "js/jquery.js"></script> -->
     <script src="js/jquery-min.js"></script>
     <script src="js/bootstrap-modal.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
@@ -95,17 +95,17 @@ and open the template in the editor.
         <div class="col-md-7" style="margin-top: 150px;">             
             <div id="contenido" class="contenido">
                 <div style="margin-left:150px">
-                    <form action="reg.php" enctype="multipart/form-data" method="POST">
+                    <form action="POST" enctype="multipart/form-data" method="POST" id="validar">
 
                         <h2>Registrar</h2>
                         <label>Nombre</label> <br>          
-                        <input name="name" type="text" name="nombre" placeholder="Nombre"><br>
+                        <input name="name" type="text" placeholder="Nombre" ><br>
                         <label>Apellido</label><br>      
-                        <input name="ape" type="text" name="Apellido" placeholder="Apellido"><br>
+                        <input name="ape" type="text" placeholder="Apellido" ><br>
                         <label>Email</label><br>      
-                        <input name="email" type="text" name="Apellido" placeholder="Email"><br>
+                        <input name="email" type="text" placeholder="Email" ><br>
                         <label>Usuario</label>  <br>         
-                        <input name="usuario" type="text" name="Usuario" placeholder="Usuario"><br>
+                        <input name="usuario" type="text" placeholder="Usuario" ><br>
                         
                         <label>Fecha Nacimiento</label>  <br>         
                         <input name="nac" type="date" name="Usuario" ><br>
