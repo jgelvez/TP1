@@ -6,6 +6,7 @@ $apellido = $_POST["ape"];
 $user = $_POST["usuario"];
 $email = $_POST["email"];
 $nacim = $_POST["nac"];
+$rol = 2;
 $passwd = sha1($_POST["passwd"]);
 $uploaddir = 'images/user_profile/';
 
@@ -25,14 +26,23 @@ echo "$tmpfile";
          header("location:index.php");
         die();
     }
-require_once 'conexion.php';
+try {
+    $pdo = new PDO(
+            'mysql:host=localhost;dbname=tp1_bii', 'root', '');
+
+    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, true);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->exec("SET NAMES UTF8");
+} catch (PDOException $e) {
+    echo 'Error de conexion a la BD: ' . $e->getMessage();
+}
 
 
 try {
     $pdo->beginTransaction();
     $pdo->exec(
-            "INSERT INTO usuario (idusuario,apellido, nombre,  usuario_nombre, contrasena , email, foto_perfil, fecha_nac)
-      VALUES ('$id','$apellido', '$nombre', '$user', '$passwd','$email','$tmpfile', '$nacim')"
+            "INSERT INTO usuario (idusuario,apellido, nombre,  usuario_nombre, contrasena , email, foto_perfil, fecha_nac,rol)
+      VALUES ('$id','$apellido', '$nombre', '$user', '$passwd','$email','$tmpfile', '$nacim', '$rol')"
     );
 
 

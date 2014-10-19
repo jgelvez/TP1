@@ -1,13 +1,18 @@
 <?php
-	require_once 'conexion.php';//agregado
-	session_start();
-	
+require_once 'conexion.php';
+$consulta = "select nombre from categoria";
+$statement1 = $pdo->query($consulta);
+$row = $statement1->fetchAll(PDO::FETCH_ASSOC);
 
- $usuario = $_SESSION['usuario'];
- $foteico=  $_SESSION['perfil'];
+$usuario = $_SESSION['usuario'];
+$foteico = $_SESSION['perfil'];
+$id = $_SESSION['papota'];
+if (empty($_SESSION['usuario'])) {
 
+    header("Location: index.php");
+    die();
+}
 ?>
-
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -24,7 +29,6 @@ and open the template in the editor.
     <script src="js/maps.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
     <script src = "js/jquery.js"></script> 
-    <script src="js/jquery-min.js"></script>
     <script src="js/bootstrap-modal.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style.css" type="text/css">
@@ -32,19 +36,12 @@ and open the template in the editor.
 
 
 </head>
-<?php
-if(empty($_SESSION['usuario'])){
-    
-  echo '<script language="javascript">';
-  echo 'alert ("Inicie Session y vuelva intentarlo")';  //not showing an alert box.
-  echo '</script>';
-    sleep(5);
-    header("location:index.php");
-}
-?>
 
 
-<body onload="initialize()">
+
+
+
+<body>
     <div class="container-fluid" id="principal">  
 
         <div class="sticky" style="z-index:2;">
@@ -63,12 +60,15 @@ if(empty($_SESSION['usuario'])){
 
 
                 <div class="col-md-4" >                  
-                    <label style="margin-left:130px;color: white"><?php echo"$usuario"?></label>
+                    <label style="margin-left:130px;color: white"><?php echo"$usuario" ?></label>
                     <a style="margin-top:50px ;margin-left: -50px" class="btn btn-success" href="<?php session_destroy();?>index.php">Cerrar Session</a>
-                    
-                    
-                     <div style="margin-left:300px;margin-top: -80px; width: 70px;height: 70px;background-image:url('images/user_profile/<?php echo"$foteico" ?>');background-size: 100%;background-repeat: no-repeat ">
-                    
+
+
+                    <div class="img-rounded"  
+                         style="margin-left:300px;margin-top: -80px; width: 
+                         70px;height: 70px;background-image:url('images/user_profile/<?php echo"$foteico" ?>');
+                         background-size: 100%;background-repeat: no-repeat ">
+
                     </div>
                 </div>
             </div>        
@@ -118,26 +118,32 @@ if(empty($_SESSION['usuario'])){
             <div class="col-md-7" style="margin-top: 150px;">             
                 <div id="contenido" class="contenido">
                     <div style="margin-left:150px">
-                        <form>
+                        <form action="lugaradd.php" method="POST" enctype="multipart/form-data">
 
                             <h2>Alta Lugar </h2>
                             <label>Nombre de lugar</label> <br>          
-                            <input id="nameL" type="text" name="search" placeholder="Lugar"><br>
+                            <input name="nameL" type="text"  placeholder="Nombre Lugar"><br>
                             <label>Direccion</label><br>      
-                            <input id="dirL" type="text" name="search" placeholder="Lugar"><br>
+                            <input name="dirL" type="text"  placeholder="Direccion"><br>
                             <label>Detalle</label>  <br>         
-                            <input id="detL" type="text" name="search" placeholder="Lugar">
-                            <div id ="map_canvas" style ="width: 300px; height: 300px">
+                            <input  style="height: 60px" name="detL" type="text"  placeholder="Detalle">
+                            <div id ="map_canvas" style ="width: 300px; height: 300px">m
 
+                            </div> 
+                            <label>Categoria</label><br>
+                            <select name="categoria">                                
+                                <?php foreach ($row as $rows): ?>                        
+                                    <option  style="margin-top: 10px"><?php echo $rows['nombre'] ?></option>
+                                <?php endforeach ?>
+                            </select>
+                            <input name="latL" type="hidden" id="lati" value="$('map_canvas')."/><br>   
+                            <input  name="lonL" type="hidden" id="longi" value="$('map_canvas')."><br>
+                            <input name="id" type="hidden" value="<?php echo $id ?>"><br>
+                            <input type="hidden" name="MAX_FILE_SIZE" value="300000000" />
+                            Foto de Lugar: <input type="file" name="uploadFile"><br>
 
-
-
-                            </div>                      
-                              
-                            <input type="hidden" id="latL" type="text" class="gllpLatitude" name="search" value="$('map_canvas')."/><br>   
-                            <input type="hidden" id="lonL" type="text" name="search" value=""><br><br>
                             <button type="submit" class="btn btn-success">Guardar</button>
-                            
+
 
 
 
@@ -150,11 +156,8 @@ if(empty($_SESSION['usuario'])){
 
                 <nav class="nav-sidebar">
                     <ul class="nav">
-                        <li class="active"><a href="javascript:;">Inicio</a></li>
-                        <li><a href="#contenido:;">Registrar Lugar</a></li>
-
-                        <li class="nav-divider"></li>
-                        <li><a href="javascript:;"><i class="glyphicon glyphicon-off"></i> Cerrar Session</a></li>
+                        <li class="active"><a href="index.php">Inicio</a></li>
+                        <li><a href="addnew.php">Registrar Lugar</a></li>
                     </ul>
                 </nav>
 
@@ -171,4 +174,5 @@ if(empty($_SESSION['usuario'])){
 
 
 </body>
+
 

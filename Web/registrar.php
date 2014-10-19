@@ -1,3 +1,9 @@
+<?php
+ session_start();
+
+
+
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -55,9 +61,9 @@ and open the template in the editor.
 
     <div class="row" >
 
-        <div  style="margin:0;margin-left: 320px; position:absolute; z-index: 0">
-            <?php include('slide.html'); ?> 
-        </div>
+       <div  style="margin:0;margin-left: 320px; position:absolute; z-index: 0">
+                <?php include('slide.html'); ?> 
+            </div>
 
 
         <div id="iconos" style="position: absolute;margin-top:380px ;z-index:2">
