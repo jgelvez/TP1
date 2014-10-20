@@ -19,12 +19,13 @@ and open the template in the editor.
     </script>
     <script src="js/maps.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-   <!-- <script src = "js/jquery.js"></script> -->
-    <script src="js/jquery-min.js"></script>
+    <script src = "js/jquery.js"></script>
     <script src="js/bootstrap-modal.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style.css" type="text/css">
-
+	<script src="js/jquery.validate.js"></script>
+	<script src="js/formulario.js"></script>
+	
 
 
 </head>
@@ -101,11 +102,21 @@ and open the template in the editor.
         <div class="col-md-7" style="margin-top: 150px;">             
             <div id="contenido" class="contenido">
                 <div style="margin-left:150px">
-                    <form action="POST" enctype="multipart/form-data" method="POST" id="validar">
+                    <form action="reg.php" enctype="multipart/form-data" class="form-horizontal" method="POST" id="formulario">
 
                         <h2>Registrar</h2>
-                        <label>Nombre</label> <br>          
-                        <input name="name" type="text" placeholder="Nombre" ><br>
+                        <div class="has-error">
+							<label class="control-label" for="inputEmail">Nombre :</label>
+							<div class="controls">
+							  <input type="text" name="txtNombre" placeholder="Nombre">
+							</div>
+					    </div>
+					    <div class="control-group">
+							<label class="control-label" for="inputEmail">Apellido :</label>
+							<div class="controls">
+							  <input type="text" name="txtNombre" placeholder="Apellido">
+							</div>
+					    </div>
                         <label>Apellido</label><br>      
                         <input name="ape" type="text" placeholder="Apellido" ><br>
                         <label>Email</label><br>      

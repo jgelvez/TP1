@@ -1,6 +1,9 @@
 <?php
 
 session_start();
+require 'validacion.php';
+include('error.class.php');
+
 $nombre = $_POST["name"];
 $apellido = $_POST["ape"];
 $user = $_POST["usuario"];
@@ -16,23 +19,30 @@ $uploadfile = $uploaddir . basename($_FILES['uploadFile']['name']);
 $tmpfile= sha1($uploadfile).".jpg";
 
 echo "$tmpfile";
-//validar con expreciones regulares
-	function validateEmail($email) {
-		var emailReg = /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-		if( !emailReg.test( $email ) ) {
-			return false;
-		} else {
-			return true;
-		}
-	}
 
+	if (verificar_password_strenght($passwd)===false){
+		echo Error::display('Escriba una contraseña válida',0,'warning','Contraseña');
+		}
+
+	if (valDate($nacim)===false){
+		
+		echo Error::display(' una fecha válida (AAAA-MM-DD)',0,'warning','Fecha');
+		
+		}	
+
+    if (validaEmail($email)===false){
+		
+		echo Error::display('Escriba un mail válido',0,'warning','Email');
+		
+		}
+	
 
     if (move_uploaded_file($_FILES['uploadFile']['tmp_name'], $uploaddir.$tmpfile)) {
         echo "El archivo es válido y fue cargado exitosamente.\n";
     } else {
         echo "Error en la carga de archivos !\n";
         sleep(5);
-         header("location:index.php");
+        // header("location:index.php");
         die();
     }
 try {
@@ -59,7 +69,7 @@ try {
     $pdo->commit();  //se guardarÃ­a todo â€œdefinitivamenteâ€?
 
     sleep(5);
-    header("location:index.php");
+   // header("location:index.php");
     die();
      
 } catch (PDOException $e) {

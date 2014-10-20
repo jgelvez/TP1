@@ -124,3 +124,20 @@ img.icon{
     margin-left: 900px;
     margin-top: -0px;
 }
+
+.controls > .error {
+    color: #b94a48;
+    display: inline-block;
+    *display: inline;
+    padding-left: 5px;
+    vertical-align: middle;
+    *zoom: 1;
+}
+
+container  {
+    width: 650px;
+    margin: auto;
+}
+h2 {
+    text-align: center;
+}
