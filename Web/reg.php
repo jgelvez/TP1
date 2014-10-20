@@ -6,6 +6,7 @@ $apellido = $_POST["ape"];
 $user = $_POST["usuario"];
 $email = $_POST["email"];
 $nacim = $_POST["nac"];
+$rol = 2;
 $passwd = sha1($_POST["passwd"]);
 $uploaddir = 'images/user_profile/';
 
@@ -49,8 +50,8 @@ try {
 try {
     $pdo->beginTransaction();
     $pdo->exec(
-            "INSERT INTO usuario (idusuario,apellido, nombre,  usuario_nombre, contrasena , email, foto_perfil, fecha_nac)
-      VALUES ('$id','$apellido', '$nombre', '$user', '$passwd','$email','$tmpfile', '$nacim')"
+            "INSERT INTO usuario (idusuario,apellido, nombre,  usuario_nombre, contrasena , email, foto_perfil, fecha_nac,rol)
+      VALUES ('$id','$apellido', '$nombre', '$user', '$passwd','$email','$tmpfile', '$nacim', '$rol')"
     );
 
 

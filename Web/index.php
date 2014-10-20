@@ -1,3 +1,15 @@
+<?php
+require_once 'conexion.php';
+try {
+    $consulta = "SELECT * FROM lugar";
+    $statement1 = $pdo->query($consulta);
+    $row = $statement1->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $ex) {
+    echo "$ex";
+    echo "<br>";
+    echo "hubo un error al solicitar los datos ";
+}
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -13,7 +25,6 @@ and open the template in the editor.
     <script src="js/bootstrap-modal.js"></script> 
     <script src="js/staticdiv.js"></script> 
     <script src="js/contenido.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
@@ -22,7 +33,7 @@ and open the template in the editor.
 <body>
     <div class="container-fluid" id="principal">  
 
-        <div class="sticky" style="z-index:2;">
+        <div class="sticky" style="z-index:3;">
             <div class="row" id="head" style="background-color: black ; height: 100px;";>
 
                 <div class="col-md-4">
@@ -31,9 +42,11 @@ and open the template in the editor.
 
 
                 <div class="col-md-4">
-                    <p style="color: white;margin:auto ">Busqueda</p>
-                    <input id="search" type="text" name="search" placeholder="buscar" style="margin-left: 30px;width:280px" >
-                    <button  class="btn-primary">Buscar</button>
+                    <form action ="buscar_controlador.php" method="post">
+                        <p style="color: white;margin:auto ">Busqueda</p>
+                        <input  id="search" type="text" name="search" placeholder="buscar" style="margin-left: 30px;width:280px" >
+                        <button type ="submit" class="btn-primary">Buscar</button>
+                    </form>
                 </div>
 
 
@@ -68,7 +81,7 @@ and open the template in the editor.
                 <div class="iconos" id="icon3">
                     <img class="icon" src="images/icon3.png">
                     <p class="texto">Hoteles</p>
-                    <script>$("#contenido").html("www.google.com");</script>
+
                 </div>
                 <div class="iconos" id="icon4">
                     <img class="icon" src="images/icon4.png">
@@ -86,10 +99,34 @@ and open the template in the editor.
 
 
             </div>
-            <div class="col-md-7" style="margin-top: 420px;">             
-                <div id="contenido" class="contenido">
-                    <p>ACA VA EL CONTENIDO</p>
+            <div class="col-md-5" style="margin-top:110px;margin-left: 20px">
+
+                <div id="contenido"  style="float: top;">
+                    <?php foreach ($row as $rows): ?>
+                    <div id="dvcontent"  style="margin-top: 10px; border: 1px solid #e7e7e7; float: ">
+                       
+                            <div id="content"  style="margin-left:120px">
+                                <h1><?php echo $rows['nombre_lugar'] ?></h1>
+                                <p><?php echo $rows['descripcion']?></p>
+                            </div>
+                        
+                            <div style="margin-left: 410px" id="botonera">
+                                <form action='/sites/places.php' method="POST">
+                                    <a style="" href="sites/places.php" class="btn btn-success" role="button">Mas Info</a><br>
+                                    
+                                    
+                                    
+                                </form>
+                                
+                            </div>
+                         <div id="image">
+                             <img style="height: 90px;width:90px; margin-top: -150px;margin-left: 15px" class="img-rounded" src="images/place_image/<?php echo $rows['foto_perfil'] ?>">
+                            <br>
+                        </div>
+                        </div>   
+                    <?php endforeach ?>
                 </div>
+
             </div>
 
 
@@ -115,7 +152,5 @@ and open the template in the editor.
                     </form>
                 </div>
             </div> 
-
-
             </body>
 
